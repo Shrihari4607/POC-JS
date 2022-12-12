@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+      python: 3.8
+    commands:
+      - cp ./settings.xml /root/.m2/settings.xml
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...moving on...
+      - aws --version
+  build:
+    commands:
+      - echo Build started on `date`
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain ins-devops-poc-domain --domain-owner 785131266845 --query authorizationToken --output text`
+      - echo $CODEARTIFACT_AUTH_TOKEN
+  post_build:
+    commands:
+      - mvn -s settings.xml deploy
+      - echo Build completed on `date`
+artifacts:
+  discard-paths: yes
+  files:
+    - target/*mywebapp.war

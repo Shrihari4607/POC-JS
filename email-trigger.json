@@ -1,0 +1,10 @@
+{
+  "Source":"gowtham495@gmail.com",
+  "Template": "EmailTemplate",
+  "ConfigurationSetName": "PipelineEmail",
+  "Destination": {
+    "ToAddresses": [ "shrihari.m@cognizant.com","ManojReddy.D@cognizant.com","shrihari4607@gmail.com"
+    ]
+  },
+  "TemplateData": "{ \"name\":\"Receiver\", \"pipelineName\": \"AWS_CICD_E2E_POC\" }"
+}
